@@ -1,0 +1,53 @@
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+
+.FLEX{display: flex; align-items: center; justify-content: center;}
+.COLUMN{display: flex; align-items: center; justify-content: center; flex-direction: column;}
+
+body{display: flex; align-items: start; justify-content: start;user-select: none;width: 1536px; height: 864px;}
+
+.ReceptionArr{position: fixed; bottom: 25px; right: 25px;}
+.ReceptionArr_Input{width: 125px; height: 40px; border-radius: 10px; padding-left: 10px; padding-right: 10px; font-size: 18px;}
+.ReceptionArr_Button{width: 40px; height: 40px; background-color: red; margin-left: 10px; border-radius: 10px;}
+
+.Arr_Button-World{position: fixed; bottom: 80px; right: 25px; width: 40px; height: 40px; background-color: green; border-radius: 10px;}
+
+.TypeCView{position: fixed; bottom: 25px; left: 25px;}
+.TypeCView_Elem{margin: 0 5px; width: 32px; height: 32px; border-radius: 4px;}
+#TC1{background-color: rgb(0, 106, 255);}#TC2{background-color: rgb(0, 157, 255);}#TC3{background-color: rgb(0, 183, 255);}
+#TC4{background-color: rgb(0, 0, 0);}#TC5{background-color: rgb(50, 50, 50);}#TC6{background-color: rgb(100, 100, 100);}
+#TC7{background-color: rgb(255, 242, 0);}#TC8{background-color: rgb(0, 255, 26);}#TC9{background-color: rgb(15, 184, 32);}

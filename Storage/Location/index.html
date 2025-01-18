@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+   
+   <head>  
+   <title>Назва</title>
+
+   <meta html equiv="Content-type" content="text/html;charset=UTF-8" />
+   <meta name="viewport" content="width=device-width">
+
+   <link rel="stylesheet" href="L_CSS/Style.css">
+
+   <script src="L_JS/Script.js" defer></script>
+   <script src="Storage/Objects/ArrObjects.js" defer></script>
+
+   <script src="../Baggage/InventoryArr.js" defer></script>   
+   <script src="../Baggage/SkillsArr.js" defer></script>   
+   <script src="../Baggage/CraftArr.js" defer></script>   
+
+   <script src="../Hero/Status.js" defer></script>  
+   <script src="../Hero/Hunger/Hunger.js" defer></script>  
+   <script src="../Hero/Stamina/Stamina.js" defer></script>  
+
+   <script src="Storage/Create/Create.js" defer></script>  
+   <script src="Storage/Objects/Objects.js" defer></script>      
+   <script src="Storage/Time/Time.js" defer></script>
+   <script src="Storage/Moving/Moving.js" defer></script>   
+
+   <script src="L_JS/Parameters.js" defer></script>
+   <script src="L_JS/IMG.js" defer></script>  
+   <script src="L_JS/Control.js" defer></script>      
+   <script src="L_JS/LocationRendering.js" defer></script>  
+
+   <script src="Storage/Interaction/Collect/CollectEventsList.js" defer></script>   
+   <script src="Storage/Interaction/Collect/Collect.js" defer></script>   
+   <script src="Storage/Interaction/Inventory/Inventory.js" defer></script>   
+   <script src="Storage/Interaction/Skills/Skills.js" defer></script>   
+   <script src="Storage/Interaction/Craft/Craft.js" defer></script>   
+   <script src="Storage/Interaction/Map/Map.js" defer></script>   
+
+   <script src="L_JS/End.js" defer></script>    
+   </head>
+   <body>
+      <canvas id="Canvas"></canvas>
+      <div class="ReceptionArr FLEX">
+         <input type="text" class="ReceptionArr_Input">
+         <button class="ReceptionArr_Button" onclick="GoCopyWorldButt()"></button>
+      </div>
+      <div class="HeroStatus">
+         <div class="Statu"><div id="Hunger" class="ScaleStatu"></div></div>
+         <div class="Statu"><div id="Stamina" class="ScaleStatu"></div></div>
+      </div>
+      <div id="Timer">
+         <div class="Indicator"></div>
+      </div>
+      <section id="Inventory" class="Window">
+         <div class='WindowX' onclick="Windows(0,0)"></div>
+         <div class="Info"></div>
+         <div class="Equipment COLUMN">
+            <div class="EquipmentTop FLEX">
+               <div style="padding-right: 0;" class="Equ_Side COLUMN">
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+               </div>
+               <div style="padding-left: 0;" class="Equ_Side COLUMN">
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+               </div>
+               <div class="Equ_Avatar"></div>
+               <div class="Equ_Side COLUMN">
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+               </div>
+            </div>
+            <div class="EquipmentBottom COLUMN">
+               <div class="Equ_Dop FLEX">
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+               </div>
+               <div class="Equ_Dop FLEX">
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+                  <div class="EType_El"></div>
+               </div>
+            </div>
+         </div>
+         <div class="Things COLUMN">
+            <div class="ThingsBox">
+               <div id="ThingsList" class="List"></div>
+            </div>
+         </div>
+      </section>
+      <section id="Skills" class="Window FLEX">
+         <div class='WindowX' onclick="Windows(0,1)"></div>
+         <div class="COLUMN" id="SList" ></div>
+         <div class="SSkills"></div>
+      </section>
+      <section id="Craft" class="Window FLEX">
+         <div class='WindowX' onclick="Windows(0,2)"></div>
+         <div class="COLUMN" id="CList" ></div>
+         <div class="CResources"></div>
+      </section>
+      <section id="Map" class="Window FLEX">
+         <div class='WindowX' onclick="Windows(0,3)"></div>
+         <canvas id="CanvasMap"></canvas>
+      </section>
+   </body>
+</html>

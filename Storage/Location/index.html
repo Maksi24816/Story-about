@@ -17,12 +17,15 @@
    <script src="../Baggage/SkillsArr.js" defer></script>   
    <script src="../Baggage/CraftArr.js" defer></script>   
 
+   <script src="../Events/EventsArr.js" defer></script>   
+
    <script src="../Hero/Status.js" defer></script>  
    <script src="../Hero/Hunger/Hunger.js" defer></script>  
    <script src="../Hero/Stamina/Stamina.js" defer></script>  
 
    <script src="Storage/Create/Create.js" defer></script>  
    <script src="Storage/Objects/Objects.js" defer></script>      
+   <script src="../Map/Generator_0.0.0.6/Flora/Flora.js" defer></script>      
    <script src="Storage/Time/Time.js" defer></script>
    <script src="Storage/Moving/Moving.js" defer></script>   
 
@@ -52,6 +55,12 @@
       </div>
       <div id="Timer">
          <div class="Indicator"></div>
+      </div>
+      <div class="Died FLEX">
+         <div class="DiedBox COLUMN">
+            <p>Died</p>
+            <p>Menu</p>
+         </div>
       </div>
       <section id="Inventory" class="Window">
          <div class='WindowX' onclick="Windows(0,0)"></div>
@@ -112,6 +121,7 @@
       <section id="Map" class="Window FLEX">
          <div class='WindowX' onclick="Windows(0,3)"></div>
          <canvas id="CanvasMap"></canvas>
+         <div id="ActLocationBox"></div>
       </section>
    </body>
 </html>

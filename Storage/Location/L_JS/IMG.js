@@ -2,8 +2,8 @@ const ArrCView = [];
 const ArrObjectsIMG = [];
 const ArrInventoryIMG = [];
 
-const ArrObjectsIMGName = [["Walls/",["Natural/"]],["Сollect/",["Resources/","Herbs/","Berries/"]],["Сollect_Extract/",["Bushes/"]],["Extract/",["Shrubs/","Stones/"]]];
-const ArrInventoryIMGName = [["Resources/",["Сollect/"]],["Food/",["Сollect/"]],["Tools/",["Prey/"]]];
+const ArrObjectsIMGName = [["Walls/",["Natural/"]],["Сollect/",["Resources/","Herbs/","Berries/"]],["Сollect_Extract/",["Bushes/"]],["Extract/",["Shrubs/","Stones/","Tree/"]]];
+const ArrInventoryIMGName = [["Resources/",["Сollect/"]],["Food/",["Сollect/"]],["Tools/",["Prey/"]],["Herbs/",["Herbs/"]]];
 
 const ContactCView = [[[1,0]],[[2,1]],[[6,2]],[[4,3]],[[5,4]],[[6,5]],[[7,6],[9,6]],[[8,7]],[[null,8]],[[null,9]]]
 const IMGHero = new Image();

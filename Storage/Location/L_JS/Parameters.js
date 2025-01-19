@@ -1,4 +1,4 @@
-const SIZE_EL_MAP_X = 32, SIZE_EL_MAP_Y = 26;
+const SIZE_EL_MAP_X = 48, SIZE_EL_MAP_Y = 39;
 const SIZE_EL_IMG_X = 64, SIZE_EL_IMG_Y = 52;
 
 const DegreeWorldSize = 4;
@@ -11,7 +11,7 @@ const MinHeightWorld = 0, MaxHeightWorld = 2;
 const CenterHeightWorld = 1;
 let HeightWorld = CenterHeightWorld;
 
-let HeroXLocation = 40, HeroYLocation = 40;
+let HeroXLocation = 13, HeroYLocation = 13;
 
 let HeroXCell = SIZE_EL_MAP_X/2, HeroYCell = SIZE_EL_MAP_Y/2;
 const HeroXCellCenter = HeroXCell, HeroYCellCenter = HeroYCell;

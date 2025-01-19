@@ -8,10 +8,10 @@ setTimeout(() => {
         ArrLocation = ARR[1];
     }
     
-    CreateLocation.Controler();
-        
+    CreateLocation.Controler(1);
+    NoStatic.Controler();
+    
     setTimeout(() => {
-        Objects.Controler();
         LocationRendering.Cell();
         Moving.Scroll();
     }, 10);

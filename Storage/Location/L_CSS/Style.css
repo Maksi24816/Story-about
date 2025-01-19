@@ -100,3 +100,7 @@ body{display: flex; align-items: start; justify-content: start;user-select: none
 
 #Map{align-items: start;}
 .ActLocation{border: 2px red solid; position: absolute;}
+
+.Died{width: 100%; height: 100%; position: fixed; top: 0; left: 0; background-color: black; z-index: 3; display: none;}
+.DiedBox p{font-size: 48px; color: red; text-shadow: 0 0 10px red; margin-top: 33px;}
+.DiedBox p:hover{text-shadow: 0 0 25px red;}

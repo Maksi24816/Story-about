@@ -9,3 +9,8 @@ function Windows (TF,N) {
 }
 
 //<div class="Items"></div>
+
+const DiedBox = document.querySelector(".Died")
+DiedBox.addEventListener("click",()=>{
+    location.href='../../index.html'
+})

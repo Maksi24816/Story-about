@@ -4,7 +4,7 @@ const Time = {
     Controler () {
         setInterval(() => {
             Time.Animation();
-        }, 300);
+        }, 225);
 
         setInterval(() => {
             Stamina.Controler(StateRunHero[HeroState])
@@ -17,7 +17,7 @@ const Time = {
 
     Animation () {
         HeroAnim++;
-        HeroAnim = HeroAnim%4;
+        HeroAnim = HeroAnim%8;
 
         LocationRendering.Hero()
     }

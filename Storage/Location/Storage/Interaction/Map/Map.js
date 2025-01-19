@@ -11,6 +11,9 @@ const GMap = {
         const CanvasMap = document.getElementById("CanvasMap");
         const MapContext = CanvasMap.getContext('2d');
 
+        const ActLocationBox = document.getElementById("ActLocationBox");
+        ActLocationBox.innerHTML = "";
+
         CanvasMap.width = WorldSize*SIZE_EL_GMAP_X*3, CanvasMap.height = WorldSize*SIZE_EL_GMAP_Y*3;
 
         for(let y = 0; y < ArrLocation.length; y++){
@@ -29,9 +32,9 @@ const GMap = {
         div.style.width = SIZE_EL_GMAP_X*9 + "px";
         div.style.height = SIZE_EL_GMAP_X*9 + "px";
 
-        div.style.top = SIZE_EL_GMAP_X*YLocStart + "px";
-        div.style.left = SIZE_EL_GMAP_X*XLocStart + "px";
+        div.style.top = SIZE_EL_GMAP_X*YLocSectionStart*3 + "px";
+        div.style.left = SIZE_EL_GMAP_X*XLocSectionStart*3 + "px";
 
-        Map.append(div);
+        ActLocationBox.append(div);
     },
 }

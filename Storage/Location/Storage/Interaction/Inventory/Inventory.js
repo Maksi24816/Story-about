@@ -6,7 +6,6 @@ let InventoryList = [
         null,null,null,null,null
     ],
     [
-        [[1,0,0],[5]]
     ]
 ]
 
@@ -61,9 +60,13 @@ const Inventory = {
     },
 
     Type (Num) {
-        a = InventoryList[1][Num][0][0];
-        
-        switch (a) {
+        a1 = InventoryList[1][Num][0][0];
+        a2 = InventoryList[1][Num][0][1];
+        a3 = InventoryList[1][Num][0][2];
+
+        Inventory.Events(InventoryList[1][Num]);
+
+        switch (a1) {
             case 0:
 
               break;
@@ -87,6 +90,14 @@ const Inventory = {
 
             InventoryList[1].splice(Num, 1);
             Hunger.Scale();
+        }
+    },
+
+    Events (Items) {
+        IA = InventoryArr[Items[0][0]][Items[0][1]][Items[0][2]][2];
+        
+        for (let x = 0; x < IA.length; x++) {
+            EventList[IA[x]]();
         }
     }
 }

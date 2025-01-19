@@ -27,7 +27,7 @@ const Moving = {
     },
 
     CheckingCell () {
-        a = LocationCell[HeroXLocation][HeroYLocation][0][0]
+        a = LocationSectionCell[XLocSectionStart][YLocSectionStart][HeroXLocation][HeroYLocation][0][0]
         switch (a) {
             case 0:
               console.log(a)
@@ -71,8 +71,8 @@ const Moving = {
     },
 
     CheckingHeight () {
-        if(LocationCell[HeroXLocation][HeroYLocation][1] !== undefined){
-            a = LocationCell[HeroXLocation][HeroYLocation][1][0][0]
+        if(LocationSectionCell[XLocSectionStart][YLocSectionStart][HeroXLocation][HeroYLocation][1] !== undefined){
+            a = LocationSectionCell[XLocSectionStart][YLocSectionStart][HeroXLocation][HeroYLocation][1][0][0]
             switch (a) {
                 case null:
                     return true;
@@ -123,9 +123,32 @@ const Moving = {
             HeroYLocation--;
         }
 
+        if(HeroXLocation > 26){
+            HeroXLocation = 0;
+            Moving.JourneySecLoc(1,0);
+        } else if (HeroXLocation < 0) {
+            HeroXLocation = 26;
+            Moving.JourneySecLoc(-1,0);
+        }
+
+        if(HeroYLocation > 26){
+            HeroYLocation = 0;
+            Moving.JourneySecLoc(0,1);
+        } else if (HeroYLocation < 0) {
+            HeroYLocation = 26;
+            Moving.JourneySecLoc(0,-1);
+        }
+
         Moving.Checking(X,Y)
     },
     
+    JourneySecLoc (X,Y) {
+        XLocSectionStart+=X;
+        YLocSectionStart+=Y;
+
+        CreateLocation.Controler(0);
+    },
+
     Sight (X,Y) {
         if(X > 0){
             if(Y > 0){
@@ -153,8 +176,8 @@ const Moving = {
     },
 
     Scroll () {
-        X = HeroXLocation*SIZE_EL_MAP_X-windowDistanceX+HeroXCell;;
-        Y = HeroYLocation*SIZE_EL_MAP_Y-windowDistanceY+HeroYCell;
+        X = (27+HeroXLocation)*SIZE_EL_MAP_X-windowDistanceX+HeroXCell;;
+        Y = (27+HeroYLocation)*SIZE_EL_MAP_Y-windowDistanceY+HeroYCell;
         window.scrollTo(X, Y);
     }
 }

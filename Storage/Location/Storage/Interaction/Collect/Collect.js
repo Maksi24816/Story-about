@@ -35,6 +35,7 @@ const Collect = {
 
             a0 = ctObject[0];
             a1 = ctObject[1];
+            a2 = ctObject[2];
             switch (a0) {
                 case 1:
                     Collect.Go(0,DivTimer,State);
@@ -52,6 +53,28 @@ const Collect = {
                             default:
                               console.log("No")
                           }
+                    }
+                  break;
+                case 3:
+                    switch (a1) {
+                        case 0:
+                            if(Collect.Tool(0)){
+                                Collect.Go(0,DivTimer,State);
+                            }
+                          break;
+                        case 2:
+                            switch (a2) {
+                                case 1:
+                                    if(Collect.Tool(0)){
+                                        Collect.Go(0,DivTimer,State);
+                                    }
+                                  break;
+                                default:
+                                  console.log("No")
+                            }
+                          break;
+                        default:
+                          console.log("No")
                     }
                   break;
                 default:

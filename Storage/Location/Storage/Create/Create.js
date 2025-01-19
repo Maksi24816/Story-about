@@ -1,35 +1,90 @@
-let LocationCell = [];
-const XLocStart = 113,YLocStart = 86;
+let LocationSectionCell = [];
+let DivideLocationCell = [];
+let ActLocationCell = [];
+let XLocSectionStart = 35,YLocSectionStart = 25;
 
 let TFWorldCell = false;
 
 const CreateLocation = {
-    Controler () {
-        CreateLocation.Create();
-        for (let x = 0; x < 4; x++) {
-            CreateLocation.Smoothing();
-            CreateLocation.Neighboring();
+    Controler (Num) {
+        if(Num === 1){CreateLocation.Divide();}
+
+        for (let x = -1; x < 2; x++) {
+            for (let y = -1; y < 2; y++) {
+                if(ActLocationCell[XLocSectionStart+x][YLocSectionStart+y] === 0){
+                    console.log(XLocSectionStart+x,YLocSectionStart+y)
+                    ccX = XLocSectionStart+x, ccY = YLocSectionStart+y;
+                    if(ActLocationCell[ccX][ccY] === 0){
+                        CreateLocation.Create(ccX,ccY);
+                        for (let q = 0; q < 4; q++) {
+                            CreateLocation.Smoothing(ccX,ccY);
+                            CreateLocation.Neighboring(ccX,ccY);  
+                        }
+                    }
+    
+                    Objects.Controler(ccX,ccY);
+    
+                    ActLocationCell[XLocSectionStart+x][YLocSectionStart+y] = 1;
+                }
+            }
         }
-        //LocationRendering.Cell()
+        
+        LocationRendering.Cell(Num)
     },
 
-    Create () {
-        for (let x = 0; x < 9; x++) {
-            for (let y = 0; y < 9; y++) {
+    Divide () {
+        Arr = [];
+        ArrAct = [];
+        ArrSec = [];
+        for (let x = 0; x < ArrLocation.length/3; x++) {
+            Arr1 = [];
+            ArrAct1 = [];
+            ArrSec1 = [];
+            for (let y = 0; y < ArrLocation[0].length/3; y++) {
+                Arr2 = [];
+                ArrAct1[ArrAct1.length] = 0;
+                ArrSec1[ArrSec1.length] = [];
+                for (let x1 = 0; x1 < 3; x1++) {
+                    Arr3 = [];
+                    for (let y1 = 0; y1 < 3; y1++) {
+                        Arr3[y1] = ArrLocation[x*3+x1][y*3+y1];
+                    }
+                    Arr2[x1] = Arr3;
+                }
+                Arr1[y] = Arr2;
+            }
+            Arr[x] = Arr1;
+            ArrAct[x] = ArrAct1;
+            ArrSec[x] = ArrSec1;
+        }
+        DivideLocationCell = Arr;
+        ActLocationCell = ArrAct;
+        LocationSectionCell = ArrSec;
+    },
+
+    Create (X,Y) {
+        for (let x = 0; x < 27; x++) {
+            LocationSectionCell[X][Y][x] = [];
+        }
+
+        for (let x = 0; x < 3; x++) {
+            for (let y = 0; y < 3; y++) {
                 Arr = [];
+                //console.log(DivideLocationCell[X][Y][x][y][0])
                 for (let x1 = 0; x1 < 9; x1++) {
                     for (let y1 = 0; y1 < 9; y1++) {  
-                        Arr[x1*9+y1] = CreateLocation.Transition(ArrLocation[XLocStart+x][YLocStart+x1],x,y,x1,y1);
-                        //Arr[x1*9+y1][0][2] = 0;
+                        LocationSectionCell[X][Y][x*9+x1][y*9+y1] = CreateLocation.Transition(DivideLocationCell[X][Y][x][y],x,y,x1,y1);
+                        LocationSectionCell[X][Y][x*9+x1][y*9+y1][0][2] = 0;
                     }
                 }
-                LocationCell[x*9+y] = Arr
             }
         } 
+        //console.log(LocationSectionCell[X][Y])
     },
 
     Transition (AL,x,y,x1,y1){
-        Res = LocCellTransition[AL[0][2]][y1][y];
+        Res = LocCellTransition[AL[0][2]][y1][x1];
+        //console.log(AL[0][0])
         ctArr = AL.slice();
 
         Rand = Math.random();
@@ -44,41 +99,42 @@ const CreateLocation = {
         return ctArr
     },
 
-    Smoothing () {
-        for(let x = 1 ; x < LocationCell.length-1; x++){
-            for(let y = 1 ; y < LocationCell.length-1; y++){
-                LocCell = LocationCell[x][y][0][0];
-                CreateLocation.SmoothingCount(x,y,LocCell);
+    Smoothing (X,Y) {
+        LSC = LocationSectionCell[X][Y];
+        for(let x = 1 ; x < 26; x++){
+            for(let y = 1 ; y < 26; y++){
+                LocCell = LSC[x][y][0][0];
+                CreateLocation.SmoothingCount(x,y,LocCell,X,Y);
             }
         }
     },
 
-    SmoothingCount (X,Y,Num) {
+    SmoothingCount (X,Y,Num,GX,GY) {
         gscNum = 0;
         You = null;
 
         for(let x = X-1 ; x < X+2; x++){
             for(let y = Y-1 ; y < Y+2; y++){
-                if(LocationCell[x][y][0][0] === Num){gscNum++}
-                else {You = LocationCell[x][y][0][0]}
+                if(LocationSectionCell[GX][GY][x][y][0][0] === Num){gscNum++}
+                else {You = LocationSectionCell[GX][GY][x][y][0][0]}
             }
         }
 
-        if(gscNum > 4){LocationCell[X][Y][0][0] = Num;}
-        else{LocationCell[X][Y][0][0] = You;}
+        if(gscNum > 4){LocationSectionCell[GX][GY][X][Y][0][0] = Num;}
+        else{LocationSectionCell[GX][GY][X][Y][0][0] = You;}
     },
 
-    Neighboring () {
-        for(let x = 0 ; x < LocationCell.length; x++){
-            for(let y = 0 ; y < LocationCell.length; y++){
-                CreateLocation.NeighboringCount(x,y);
+    Neighboring (X,Y) {
+        for(let x = 0 ; x < 27; x++){
+            for(let y = 0 ; y < 27; y++){
+                CreateLocation.NeighboringCount(x,y,X,Y);
             }
         }
     },
 
-    NeighboringCount (X,Y) {
-        if(X != 0 && X != WorldSize-1){
-            if(Y != 0 && Y != WorldSize-1){
+    NeighboringCount (X,Y,GX,GY) {
+        if(X != 0 && X != 26){
+            if(Y != 0 && Y != 26){
                 neighboringCell = null;
                 Arr21 = [];
                 for(let x = -1 ; x < +2; x++){
@@ -86,9 +142,9 @@ const CreateLocation = {
                     for(let y = -1 ; y < +2; y++){
                         TF = false;
         
-                        CCView = ContactCView[LocationCell[X][Y][0][0]];
+                        CCView = ContactCView[LocationSectionCell[GX][GY][X][Y][0][0]];
                         for(let p = 0; p < CCView.length; p++){
-                            if(LocationCell[X+x][Y+y][0][0] === CCView[p][0]){TF = true; neighboringCell = p;}
+                            if(LocationSectionCell[GX][GY][X+x][Y+y][0][0] === CCView[p][0]){TF = true; neighboringCell = p;}
                         }
                         if(TF == true){Arr22[y+1] = 1;TFWorldCell = true} else {Arr22[y+1] = 0;}
                     }
@@ -96,19 +152,19 @@ const CreateLocation = {
                 }
                 
                 if(TFWorldCell == true){
-                    CCV = ContactCView[LocationCell[X][Y][0][0]][neighboringCell];
-                    LocationCell[X][Y] = CreateLocation.TransitionCView(Arr21,LocationCell[X][Y][0][0],[CCV[0],CCV[1],neighboringCell],LocationCell[X][Y][0][3])
-                } else {CreateLocation.El_NoLogic(X,Y);}
+                    CCV = ContactCView[LocationSectionCell[GX][GY][X][Y][0][0]][neighboringCell];
+                    LocationSectionCell[GX][GY][X][Y] = CreateLocation.TransitionCView(Arr21,LocationSectionCell[GX][GY][X][Y][0][0],[CCV[0],CCV[1],neighboringCell],LocationSectionCell[GX][GY][X][Y][0][3])
+                } else {CreateLocation.El_NoLogic(X,Y,GX,GY);}
         
                 TFWorldCell = false;
-            } else {CreateLocation.El_NoLogic(X,Y);}
-        } else {CreateLocation.El_NoLogic(X,Y);}
+            } else {CreateLocation.El_NoLogic(X,Y,GX,GY);}
+        } else {CreateLocation.El_NoLogic(X,Y,GX,GY);}
     },
 
-    El_NoLogic (X,Y) {
-        CCV = ContactCView[LocationCell[X][Y][0][0]][0];
-        LocationCell[X][Y][0] = [LocationCell[X][Y][0][0],[CCV[0],CCV[1],0],0,LocationCell[X][Y][0][3]];
-        LocationCell[X][Y][1] = [[null,0,0],0];
+    El_NoLogic (X,Y,GX,GY) {
+        CCV = ContactCView[LocationSectionCell[GX][GY][X][Y][0][0]][0];
+        LocationSectionCell[GX][GY][X][Y][0] = [LocationSectionCell[GX][GY][X][Y][0][0],[CCV[0],CCV[1],0],0,LocationSectionCell[GX][GY][X][Y][0][3]];
+        LocationSectionCell[GX][GY][X][Y][1] = [[null,0,0],0];
     },
 
     TransitionCView (Arr,WorldCView,Neighboring,BioCell) {
@@ -148,13 +204,13 @@ const CreateLocation = {
 const LocCellTransition = [
     [
         [[0],[0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
-        [[.0],[.60],[.60],[.60],[.60],[.60],[.60],[.60],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
+        [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]],
         [[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0],[.0]]
     ],
     [

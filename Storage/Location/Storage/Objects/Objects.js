@@ -28,40 +28,51 @@ const TestObjectsPar = [
     ],
     [
         [
-            [[7,8],[.15,.4]]
+            [[8],[1,5]]
         ],
         [
-            [[6],[.5,1.7]]
+            [[6],[.5,1.7]],
+            [[7],[.5,1.7]],
+            [[6],[.5,1.7]],
+            [[6,7],[.5,1.7]]
+        ],
+        [
+            [[7],[.6,2.1]],
+            [[8],[.4,1.2]],
+            [[7],[.5,1.5]]
         ]
     ]
 ];
 
 const Objects = {
-    Controler () {
+    Controler (X,Y) {
         let ArrTypeCO = [];
 
-        ArrTypeCO = Objects.Type(ArrTypeCO);
+        ArrTypeCO = Objects.Type(ArrTypeCO,X,Y);
 
-        Objects.SpawnNum(ArrTypeCO)
+        Objects.SpawnNum(ArrTypeCO,X,Y)
 
         //LocationCell[45][44][1][0] = [1,0,0];
     },
 
-    Type (Arr) {
+    Type (Arr,X,Y) {
         for (let x = 0; x < 10; x++) {
             Arr[x] = [];
         }
 
-        for (let x = 0; x < LocationCell.length; x++) {
-            for (let y = 0; y < LocationCell[0].length; y++) {
-                Arr[LocationCell[x][y][0][0]][Arr[LocationCell[x][y][0][0]].length] = [x,y]
+        LC = LocationSectionCell[X][Y];
+
+        for (let x = 0; x < 27; x++) {
+            for (let y = 0; y < 27; y++) {
+                LC2 = LC[x][y][0][0];
+                Arr[LC2][Arr[LC2].length] = [x,y]
             }
         }
 
         return Arr;
     },
 
-    SpawnNum (Arr) {
+    SpawnNum (Arr,X,Y) {
         for (let x = 1; x < TestObjectsPar.length; x++) {
             for (let y = 0; y < TestObjectsPar[x].length; y++) {
                 for (let z = 0; z < TestObjectsPar[x][y].length; z++) {
@@ -69,19 +80,17 @@ const Objects = {
                         TOP = TestObjectsPar[x][y][z];
                         Num = Math.floor((Arr[TOP[0][a]].length/100) * (Math.random() * (TOP[1][1] - TOP[1][0]) + TOP[1][0])) 
 
-                        Objects.Spawn(Arr,Num,TOP[0][a],x,y,z);
+                        Objects.Spawn(Arr,Num,TOP[0][a],x,y,z,X,Y);
                     }
                 }
             }
         }
     },
 
-    Spawn (Arr,Num,Type,X,Y,Z) {
+    Spawn (Arr,Num,Type,X,Y,Z,GX,GY) {
         for (let x = 0; x < Num; x++) {
             Rand = Math.floor(Math.random() * Arr[Type].length);
-            LocationCell[Arr[Type][Rand][0]][Arr[Type][Rand][1]][1] = [[X,Y,Z],0]
+            LocationSectionCell[GX][GY][Arr[Type][Rand][0]][Arr[Type][Rand][1]][1] = [[X,Y,Z],0]
         }
-
-        LocationRendering.Cell();
     }
 }

@@ -70,6 +70,33 @@ const Skills = {
                               console.log("No")
                         }
                       break;
+                    case 1:
+                        switch (a2) {
+                            case 0:
+                                return [3,0];
+                              break;
+                            case 1:
+                                return [3,0];
+                              break;
+                            case 2:
+                                return [3,0];
+                              break;
+                            default:
+                              console.log("No")
+                        }
+                      break;
+                    case 2:
+                        switch (a2) {
+                            case 0:
+                                return [1,1];
+                              break;
+                            case 1:
+                                return [1,1];
+                              break;
+                            default:
+                              console.log("No")
+                        }
+                      break;
                     default:
                       console.log("No")
                 }
@@ -89,6 +116,53 @@ const Skills = {
                               console.log("No")
                         }
                       break;
+                    default:
+                      console.log("No")
+                }
+              break;
+            case 3:
+                switch (a1) {
+                    case 0:
+                        switch (a2) {
+                          case 0:
+                            return [2,0];
+                          break;
+                        default:
+                          console.log("No")
+                        }
+                      break;
+                    case 1:
+                        switch (a2) {
+                          case 0:
+                            return [2,1];
+                            break;
+                          case 1:
+                            return [2,1];
+                            break;
+                          case 2:
+                            return [2,1];
+                            break;
+                          break;
+                        default:
+                          console.log("No")
+                        }
+                      break;
+                    case 2:
+                      switch (a2) {
+                        case 0:
+                          return [2,0];
+                          break;
+                        case 1:
+                          return [2,0];
+                          break;
+                        case 2:
+                          return [2,0];
+                          break;
+                        break;
+                      default:
+                        console.log("No")
+                      }
+                    break;
                     default:
                       console.log("No")
                 }
